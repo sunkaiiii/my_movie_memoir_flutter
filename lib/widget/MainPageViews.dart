@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import 'package:my_movie_memoir_flutter/widget/MainPage.dart';
 
 import '../utils.dart';
 
-class BottomTabView extends StatefulWidget{
+class MainPageViews extends StatefulWidget{
   @override
-  State<BottomTabView> createState() {
-    return BottomTabViewState();
+  State<MainPageViews> createState() {
+    return MainPageViewsState();
   }
 }
 
-class BottomTabViewState extends State<BottomTabView>{
+class MainPageViewsState extends State<MainPageViews>{
   var bottomNavigation=[
-    TabInformation("home",getIconImage('assets/images/home_select.png'),getIconImage('assets/images/home_unselect.png')),
-    TabInformation("search", getIconImage('assets/images/search_select.png'),getIconImage('assets/images/search_unselect.png'))
+    TabInformation("home",getIconImage('assets/images/home_select.png'),getIconImage('assets/images/home_unselect.png'),MainPage()),
+    TabInformation("search", getIconImage('assets/images/search_select.png'),getIconImage('assets/images/search_unselect.png'),Text("123"))
   ];
   int _tabIndex = 0;
   @override
@@ -30,7 +31,7 @@ class BottomTabViewState extends State<BottomTabView>{
       tabBuilder: (context,position){
         return CupertinoTabView(
           builder: (context){
-            return Text("123");
+            return bottomNavigation[position].page;
           },
         );
       },
@@ -50,10 +51,12 @@ class TabInformation {
   String tabName;
   Image selectIcon;
   Image unselectedIcon;
+  Widget page;
 
-  TabInformation(String tabName, Image selectIcon, Image unselectedIcon) {
+  TabInformation(String tabName, Image selectIcon, Image unselectedIcon,Widget page) {
     this.tabName = tabName;
     this.selectIcon = selectIcon;
     this.unselectedIcon = unselectedIcon;
+    this.page=page;
   }
 }
