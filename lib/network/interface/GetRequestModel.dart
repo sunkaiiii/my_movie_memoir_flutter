@@ -1,4 +1,7 @@
+import 'package:my_movie_memoir_flutter/network/Api.dart';
+
 abstract class GetRequestModel{
-  List<String> getParameter();
+  MyMovieMemoirAPI getApi();
+  Map<String,String> getParameter();
   List<String> getPathNames();
 }

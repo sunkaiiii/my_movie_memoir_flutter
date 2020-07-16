@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_movie_memoir_flutter/network/request/GetTrendRequest.dart';
+import 'package:my_movie_memoir_flutter/widget/SearchWidget.dart';
 import 'package:my_movie_memoir_flutter/widget/TrendLayout.dart';
 
 class MainPage extends StatelessWidget{
@@ -14,6 +15,11 @@ class MainPage extends StatelessWidget{
         physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         slivers: <Widget>[
           CupertinoSliverNavigationBar(largeTitle: const Text("MyMovieMemoir"),),
+          SliverToBoxAdapter(
+            child: Container(
+              child: SearchWidget(hint: "search movie",margin: EdgeInsets.all(8.0),),
+            ),
+          ),
           SliverSafeArea(top: false,
           sliver: _getTrendingList(),)
         ],
